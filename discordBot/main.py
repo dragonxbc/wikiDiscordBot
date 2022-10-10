@@ -1,4 +1,3 @@
-
 import discord
 import wikipediaapi
 from discord.ext import commands
@@ -13,7 +12,6 @@ wiki_wiki = wikipediaapi.Wikipedia('en')
 page_py = wiki_wiki.page('Pokémon')
 
 bot = commands.Bot(command_prefix="!", intents=discord.Intents.all()) #probably change it so it doesn't interfere lol
-#replace the !help command
 
 @bot.event
 async def on_ready():
@@ -50,8 +48,15 @@ class abot(discord.Client):
 
 # to do: 
 # turn commands into slash command variation
-# display a link after searching , maybe change it to being an embed ? dunno :)
-
+# display a link after searching (DONE)
+# maybe search output to being an embed - reason: can take up to 6000 characters collectively instead of just 2k in a normal discord message
+# replace the !help command to display parameter inputs, easier for user
+# use cogs, clean up code
+# work on potential edge cases that pop up
+# maybes:
+# weather searching functionality?
+# datetime / timezone checker
+# 
 
 
 
