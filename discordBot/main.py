@@ -74,4 +74,4 @@ class abot(discord.Client):
 
 
 
-bot.run("MTAyNzA0NzAwMTYwODcwNDA0MQ.GB-KIp.UhXdH_9bA3gxw_BpHFx_rFPHHLgRx0MDZsIz4E")
+bot.run("")
