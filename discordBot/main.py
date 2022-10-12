@@ -1,82 +1,35 @@
 import discord
-import wikipediaapi
 from discord.ext import commands
-import datetime
+import os
+import asyncio
 
-
-b145tc0jtd55n = datetime.datetime.now()
-rx920374bV = datetime.datetime(2025, 3, 10)
-count82oopoint092 = rx920374bV - b145tc0jtd55n
-
-wiki_wiki = wikipediaapi.Wikipedia('en')
-page_py = wiki_wiki.page('Pokémon')
-
-bot = commands.Bot(command_prefix="!", intents=discord.Intents.all()) #probably change it so it doesn't interfere lol
+intents = discord.Intents.default()
+intents.message_content = True
+bot = commands.Bot(command_prefix='!', intents=intents, application_id='1029161693625991175')
 
 @bot.event
 async def on_ready():
-    print("Bot Is Online")
+  print('Logged in.')
 
-@bot.command()
-async def countdown(ctx): 
-    await ctx.reply(count82oopoint092) #reformat this and work for inputs, see above
+async def load():
+  for file in os.listdir('./cogs'):
+    if file.endswith('.py'):
+      await bot.load_extension(f'cogs.{file[:-3]}')
 
-@bot.command()
-async def ping(ctx):
-    await ctx.reply(f"Pong! {round(bot.latency * 1000)}ms")
-
-@bot.command()
-async def search(ctx, *, pageName): 
-    page_py = wiki_wiki.page(pageName)
-    await ctx.reply("Title: %s" % page_py.title)
-    str1 = page_py.summary
-    if len(str1) > 2000:
-        await ctx.send("Summary: %s" % page_py.summary[0:1990])
-        await ctx.send("%s"% page_py.summary[1990:3980]) #highly scuffed, i need to find a way to change this
-        await ctx.send(page_py.fullurl)
-    elif len(str1)  < 2000:
-        await ctx.send("Summary: %s" % page_py.summary[0:1990])
-        await ctx.send(page_py.fullurl)
-
-class abot(discord.Client):
-    def __init__(self):
-        super().__init__(intents=discord.Intents.default())
-        self.synced = False
+async def main():
+  await load()
+  await bot.start("")#insert bot token. will most likely use config file for this one later down the line
     
-
-
+asyncio.run(main())
 
 # to do: 
-# turn commands into slash command variation
+# turn commands into slash command variation (DONE)
 # display a link after searching (DONE)
-# maybe search output to being an embed - reason: can take up to 6000 characters collectively instead of just 2k in a normal discord message
+# maybe search output to being an embed - reason: can take up to 6000 characters collectively instead of just 2k in a normal discord message (DONE)
 # replace the !help command to display parameter inputs, easier for user
-# use cogs, clean up code
+# use cogs, clean up code (DONE)
 # work on potential edge cases that pop up
 # maybes:
 # weather searching functionality?
 # datetime / timezone checker
 # 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-bot.run("")
