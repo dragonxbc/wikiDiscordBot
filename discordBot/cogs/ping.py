@@ -22,4 +22,4 @@ class ping(commands.Cog):
     await interaction.response.send_message(embed=embed)
 
 async def setup(bot):
-  await bot.add_cog(ping(bot),guilds=[discord.Object(id=905509936061087814)])
+  await bot.add_cog(ping(bot),guilds=[discord.Object(id=905509936061087814)])#change the id based on the server you're in

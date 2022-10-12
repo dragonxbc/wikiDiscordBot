@@ -5,7 +5,7 @@ import asyncio
 
 intents = discord.Intents.default()
 intents.message_content = True
-bot = commands.Bot(command_prefix='!', intents=intents, application_id='1029161693625991175')
+bot = commands.Bot(command_prefix='!', intents=intents, application_id='1029161693625991175')#change the id based on the application id of your bot in the portal
 
 @bot.event
 async def on_ready():
